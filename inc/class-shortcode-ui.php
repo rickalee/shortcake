@@ -67,6 +67,7 @@ class Shortcode_UI {
 	private function setup_actions() {
 		add_action( 'admin_enqueue_scripts',     array( $this, 'action_admin_enqueue_scripts' ) );
 		add_action( 'wp_enqueue_editor',         array( $this, 'action_wp_enqueue_editor' ) );
+		add_action( 'media_buttons',             array( $this, 'action_media_buttons' ) );
 		add_action( 'wp_ajax_bulk_do_shortcode', array( $this, 'handle_ajax_bulk_do_shortcode' ) );
 		add_filter( 'wp_editor_settings',        array( $this, 'filter_wp_editor_settings' ), 10, 2 );
 	}
@@ -272,6 +273,19 @@ class Shortcode_UI {
 		 */
 		do_action( 'shortcode_ui_loaded_editor' );
 	}
+
+	/**
+	 * Output an "Add Post Element" button with the media buttons.
+	 */
+	public function action_media_buttons( $editor_id ) {
+		printf( '<button type="button" class="button shortcake-add-post-element" data-editor="%s">' .
+		        '<span class="wp-media-buttons-icon dashicons dashicons-welcome-add-page"></span> %s' .
+		        '</button>',
+				esc_attr( $editor_id ),
+				esc_html__( 'Add Post Element', 'shortcode-ui' )
+		);
+	}
+
 
 	/**
 	 * Output required underscore.js templates in the footer
