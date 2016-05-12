@@ -1312,6 +1312,11 @@ var editAttributeField = Backbone.View.extend( {
 		data.meta = _meta.join( ' ' );
 
 		this.$el.html( this.template( data ) );
+
+		tinymce.init({
+			selector: 'textarea#inner_content'
+		});
+
 		this.triggerCallbacks();
 
 		return this;
