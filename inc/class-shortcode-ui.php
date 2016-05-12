@@ -278,12 +278,14 @@ class Shortcode_UI {
 	 * Output an "Add Post Element" button with the media buttons.
 	 */
 	public function action_media_buttons( $editor_id ) {
-		printf( '<button type="button" class="button shortcake-add-post-element" data-editor="%s">' .
-		        '<span class="wp-media-buttons-icon dashicons dashicons-welcome-add-page"></span> %s' .
-		        '</button>',
+		if ( $editor_id === 'content' ) {
+			printf( '<button type="button" class="button shortcake-add-post-element" data-editor="%s">' .
+			        '<span class="wp-media-buttons-icon dashicons dashicons-welcome-add-page"></span> %s' .
+			        '</button>',
 				esc_attr( $editor_id ),
 				esc_html__( 'Add Post Element', 'shortcode-ui' )
-		);
+			);
+		}
 	}
 
 
